@@ -3,7 +3,7 @@
 export const productos = [
     {
         "nombre": '303',
-        "precioF": 126,
+        "precioSF": 126,
         "cuero": 'oscaria grabado',
         "planta": 'Rbbm2',
         "acero": true,
@@ -11,7 +11,7 @@ export const productos = [
     },
     {
         "nombre": '510',
-        "precioF": 159,
+        "precioSF": 159,
         "cuero": 'hunting hidrofugado',
         "planta": 'maximus arena',
         "acero": true,
@@ -19,7 +19,7 @@ export const productos = [
     },
     {
         "nombre": '405',
-        "precioF": 150,
+        "precioSF": 150,
         "cuero": 'volcado',
         "planta": 'Rbbm2',
         "acero": true,
