@@ -1,6 +1,6 @@
 import { Container, Grid } from '@mui/material'
 import { ProductCard } from '../components/ProductCard'
-import { productos } from '../data/productos.Prueba,¡'
+import { productos } from '../data/productosPrueba'
 
 export const Productos = () => {
   return (
