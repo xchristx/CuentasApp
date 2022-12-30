@@ -12,13 +12,16 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import { useNavigate } from 'react-router-dom';
 
 const pages = ['Pedidos', 'Entregas', 'Productos'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Perfil', 'Comprar', 'Salir'];
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -27,9 +30,10 @@ function NavBar() {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu = (page) => {
     setAnchorElNav(null);
-    alert('asd')
+    page && navigate(`/${page.toLocaleLowerCase()}`)
+    
   };
 
   const handleCloseUserMenu = () => {
@@ -37,15 +41,16 @@ function NavBar() {
   };
 
   return (
-    <AppBar position="fixed">
+    <AppBar position="fixed" sx={{ bgcolor:'transparent', color:'black' }} >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          
           <Typography
-            variant="h6"
             noWrap
+            variant='h6'
             component="a"
-            href="/"
+            onClick={()=>navigate("/")}
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -54,6 +59,8 @@ function NavBar() {
               letterSpacing: '.1rem',
               color: 'inherit',
               textDecoration: 'none',
+              cursor:'pointer',
+
             }}
           >
             WORKERS
@@ -83,14 +90,17 @@ function NavBar() {
                 horizontal: 'left',
               }}
               open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+              onClose={()=>handleCloseNavMenu(null)}
               sx={{
                 display: { xs: 'block', md: 'none' },
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem key={page} onClick={()=>handleCloseNavMenu(page)}>
+                  <Typography 
+                    textAlign="center"
+                    >{page}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -99,8 +109,8 @@ function NavBar() {
           <Typography
             variant="h5"
             noWrap
+            onClick={()=>navigate("/")}
             component="a"
-            href=""
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -110,6 +120,7 @@ function NavBar() {
               letterSpacing: '.1rem',
               color: 'inherit',
               textDecoration: 'none',
+              
             }}
           >
             WORKERS
@@ -118,8 +129,8 @@ function NavBar() {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                onClick={()=>navigate(`/${page.trim().toLocaleLowerCase()}`)}
+                sx={{ my: 2, color: 'black', display: 'block' }}
               >
                 {page}
               </Button>
